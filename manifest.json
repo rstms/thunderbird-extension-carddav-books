@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "author": "Matt Krueger <mkrueger@rstms.net>",
+  "homepage_url": "https://github.com/rstms/thunderbird-extension-carddav-books",
+  "name": "CardDAV Address Book Manager",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "carddav-books-extension-ca40542c-8cda-452d-a8ed-33ca5fe8e22a@rstms.net",
+      "strict_min_version": "128.0",
+      "update_url": "https://raw.githubusercontent.com/rstms/thunderbird-extension-carddav-books/refs/heads/master/updates.json"
+    }
+  },
+  "experiment_apis": {
+    "cardDAV": {
+      "schema": "schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "cardDAV"
+          ]
+        ],
+        "script": "src/carddav.js"
+      }
+    }
+  }
+}
