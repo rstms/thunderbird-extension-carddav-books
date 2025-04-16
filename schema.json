@@ -19,7 +19,8 @@
           },
           {
             "name": "password",
-            "type": "string"
+            "type": "string",
+            "optional": true
           }
         ]
       },

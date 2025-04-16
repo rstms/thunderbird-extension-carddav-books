@@ -6,7 +6,9 @@ An experiment extension implementing an API for managing connections to CardDAV 
 
 ### List Address Books
 ```
-    let books = messenger.carddav.list();
+    let username = "user@domain.com";
+    let password = "my_carddav_password";
+    let books = messenger.carddav.list(username, password);
     for (const book of books) {
 	console.log(book);
     }

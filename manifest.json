@@ -11,6 +11,21 @@
       "update_url": "https://raw.githubusercontent.com/rstms/thunderbird-extension-carddav-books/refs/heads/master/updates.json"
     }
   },
+  "background": {
+    "scripts": [
+      "src/background.js"
+    ],
+    "type": "module"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "accountsRead",
+    "storage"
+  ],
+  "options_ui": {
+    "page": "./options.html"
+  },
   "experiment_apis": {
     "cardDAV": {
       "schema": "schema.json",
@@ -23,7 +38,7 @@
             "cardDAV"
           ]
         ],
-        "script": "src/carddav.js"
+        "script": "./src/carddav.js"
       }
     }
   }

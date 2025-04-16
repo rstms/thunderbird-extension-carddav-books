@@ -5,7 +5,7 @@ docker = env DOCKER_BUILD_OUTPUT=plain BUILDKIT_PROGRESS=plain docker
 gitclean = if git status --porcelain | grep '^.*$$'; then echo git status is dirty; false; else echo git status is clean; true; fi
 
 src = $(wildcard src/*.js)
-html = $(wildcard html/*.html)
+html = $(wildcard *.html)
 
 #html = options.html editor.html popup.hml
 
@@ -24,7 +24,7 @@ all: $(html) $(src) fix fmt lint .manifest .schema
 	touch $@
 
 fix: .eslint
-	fix -- docker run --rm -v "$$(pwd)/src:/app" eslint fix *.js
+	fix -- docker run --rm -v "$$(pwd):/app" eslint fix src/*.js
 
 lint-shell: .eslint 
 	docker run -it --rm -v "$$(pwd)/src:/app" eslint shell
@@ -42,7 +42,7 @@ closure: .closure
 	docker run -it --rm -v "$$(pwd)/src:/app" closure shell
 
 fmt: .prettier
-	docker run --rm -v "$$(pwd):/app/src" prettier --tab-width 4 --print-width 135 --write "**/*.js"
+	docker run --rm -v "$$(pwd):/app" prettier --tab-width 4 --print-width 135 --write "src/*.js" "*.html"
 
 .prettier: docker/prettier/Dockerfile
 	cd docker/prettier && $(docker) build . -t prettier

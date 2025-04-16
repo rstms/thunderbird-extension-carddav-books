@@ -70,7 +70,7 @@ var cardDAV = class extends ExtensionCommon.ExtensionAPI {
                     const hex = await CryptoUtils.sha256(url);
                     return `${hex.substring(0, 8)}-${hex.substring(8, 12)}-${hex.substring(12, 16)}-${hex.substring(16, 20)}-${hex.substring(20, 32)}`;
                 },
-                async list(username, password) {
+                async list(username, password = "") {
                     console.log("list:", username, password);
                     let books = [];
                     let hostname = this.hostname(username);

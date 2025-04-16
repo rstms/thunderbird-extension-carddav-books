@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+        <title>options.html</title>
+        <script type="module" src="./src/options.js"></script>
+        <link rel="stylesheet" href="chrome://messenger/skin/shared/common.css" />
+        <style>
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+            }
+            body {
+                background: var(--in-content-box-background);
+                color: var(--text-color-deemphasized);
+            }
+        </style>
+    </head>
+
+    <body>
+        <p>
+            This extension will use your IMAP account configuration to search for and connect to any CardDAV address books associated
+            with these accounts.
+        </p>
+        <form>
+            <div>
+                <label for="account-select">IMAP account</label>
+                <select id="account-select"></select>
+                <button id="list-books-button">List CardDAV Books</button>
+            </div>
+            <div>
+                <ul id="book-list"></ul>
+            </div>
+        </form>
+    </body>
+</html>
