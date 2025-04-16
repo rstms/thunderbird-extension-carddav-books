@@ -25,8 +25,6 @@ async function onLoaded() {
         controls.list.innerHTML = "";
         controls.button.addEventListener("click", listButtonClicked);
         controls.select.addEventListener("change", accountSelectChanged);
-        let response = await messenger.runtime.sendMessage({ id: "ping", from: "options" });
-        console.log("options got response:", response);
     } catch (e) {
         console.error(e);
     }
@@ -61,9 +59,8 @@ async function listButtonClicked() {
         console.log("list clicked");
         const account = await getSelectedAccount();
         let email = account.identities[0].email;
-        messenger.cardDAV.list(email).then((books) => {
-            console.log("books:", books);
-        });
+        let books = await messenger.cardDAV.list(email);
+        await updateBooks(books);
     } catch (e) {
         console.error(e);
     }
@@ -85,20 +82,4 @@ async function updateBooks(books) {
     }
 }
 
-async function onMessage(message) {
-    try {
-        console.log("options received message:", message);
-        switch (message.id) {
-            case "booksResponse":
-                if (message.state === "complete") {
-                    await updateBooks(message.books);
-                }
-                break;
-        }
-    } catch (e) {
-        console.error(e);
-    }
-}
-
 document.addEventListener("DOMContentLoaded", onLoaded);
-messenger.runtime.onMessage.addListener(onMessage);
